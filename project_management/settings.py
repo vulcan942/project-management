@@ -84,7 +84,7 @@ WSGI_APPLICATION = "project_management.wsgi.application"
 #         'NAME': os.environ.get('POSTGRES_NAME'),
 #         'USER': os.environ.get('POSTGRES_USER'),
 #         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-#         'HOST': 'localhost',
+#         'HOST': os.environ.get('DB_HOST'),
 #         'PORT': 5432,
 #     }
 # }
@@ -143,3 +143,10 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ALLOWED_HOSTS = ['*']
+
+
+# neo4j connection
+
+NEO4J_CONNECTION_STRING = os.environ.get('NEO4J_CONNECTION', "bolt://localhost:7687")
+NEO4J_USER = os.environ.get('NEO4J_USER', "neo4j")
+NEO4J_PASSWORD = os.environ.get('NEO4J_PASSWORD', "neo4j")

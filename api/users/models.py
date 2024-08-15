@@ -16,6 +16,10 @@ class PermissionModel(models.Model):
 class UserModel(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
     email = models.EmailField(max_length=100)
     password_hash = models.CharField(max_length=100)
     role = models.ManyToManyField(RoleModel)
