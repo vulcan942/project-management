@@ -6,4 +6,4 @@ from .serializers import ProjectSerializer
 class ProjectView(ModelViewSet):
     queryset = ProjectModel.objects.all()
     serializer_class = ProjectSerializer
-    authentication_class = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
