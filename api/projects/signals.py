@@ -6,6 +6,7 @@ from ..utils.generate_embeddings import generate_embedding
 
 @receiver(post_save, sender=ProjectModel)
 def store_project_embeddings(sender,instance:ProjectModel,**kwargs) -> None:
+    print("saving embeddings")
     project_context = instance.description
     project_embedding = generate_embedding(project_context)
 
@@ -13,8 +14,9 @@ def store_project_embeddings(sender,instance:ProjectModel,**kwargs) -> None:
     project_embedding_str = ",".join(map(str,project_embedding))
 
     query = """
-    MERGE (p:Project {project_id:$project_id, name:$project_name})
-    SET p.embedding = $project_embedding
+    MERGE (p:Project {project_id:$project_id})
+    SET p.name = $project_name,
+        p.embedding = $project_embedding
     """
     parameters = {
         "project_id": instance.id,

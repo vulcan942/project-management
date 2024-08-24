@@ -16,8 +16,10 @@ def store_task_embeddings(sender,instance:TaskModel,**kwargs) -> None:
     task_embedding_str = ",".join(map(str,task_embedding))
 
     query = """
-    MERGE (t:Task {task_id:$task_id, name:$task_name, sprint_id:$sprint_id})
+    MERGE (t:Task {task_id:$task_id})
     SET t.embedding = $task_embedding
+        t.name = $task_name
+        t.sprint_id = $sprint_id
     """
     parameters = {
         "task_id": instance.id,

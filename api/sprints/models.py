@@ -6,4 +6,4 @@ class SprintModel(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     project = models.ForeignKey(ProjectModel, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)    
+    created_at = models.DateTimeField(auto_now_add=True)
